@@ -60,12 +60,10 @@ for (const island of results) {
     .sharpen()
     .toFile(objAttributes.photo.endsWith('.jpg') ? `./public/island-thumb-images/${objAttributes.title.toLowerCase()}.jpg` : `./public/island-thumb-images/${objAttributes.title.toLowerCase()}.png`)
     .then(async info => {
-      console.log(info);
       island.set('photo_thumb', `http://localhost:5000/public/island-thumb-images/${objAttributes.title.toLowerCase()}.${info.format === 'jpeg' ? 'jpg' : info.format}`);
 
       try {
         const result = await island.save(null, { useMasterKey: true });
-        console.log('Thumbnail URL saved to database', result);
       } catch (error) {
         console.error('Error saving thumbnail URL to database', error);
       }
