@@ -6,6 +6,7 @@ import http from 'http';
 import dotenv from 'dotenv';
 import sharp from 'sharp';
 import axios from "axios";
+import fs from 'fs';
 
 
 dotenv.config();
@@ -36,6 +37,12 @@ if (!process.env.TESTING) {
 app.get('/', function (req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
+
+const pathToCreate = './public/island-thumb-images';
+if (!fs.existsSync(pathToCreate)) {
+  fs.mkdirSync(pathToCreate, { recursive: true });
+} else {
+}
 
 const Islands = Parse.Object.extend('Islands');
 const query = new Parse.Query(Islands);
