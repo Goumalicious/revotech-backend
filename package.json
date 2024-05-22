@@ -1,0 +1,22 @@
+{
+  "name": "revotech-backend",
+  "version": "1.0.0",
+  "description": "revotech sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Goumas",
+  "license": "ISC",
+  "dependencies": {
+    "@img/sharp-win32-x64": "^0.33.4",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "parse": "^5.0.0",
+    "parse-dashboard": "^5.3.0",
+    "parse-server": "^7.0.0",
+    "sharp": "^0.33.4"
+  }
+}
