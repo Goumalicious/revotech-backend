@@ -10,13 +10,14 @@ import fs from 'fs';
 
 
 dotenv.config();
+const portNumber = process.env.SERVER_PORT || 5001
 
 export const config = {
   databaseURI:
     process.env.DB_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/dev',
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '',
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',
+  serverURL: process.env.SERVER_URL || 'http://localhost:5001/parse',
   liveQuery: {
     classNames: ['Posts', 'Comments'],
   },
@@ -60,7 +61,7 @@ for (const island of results) {
     .sharpen()
     .toFile(objAttributes.photo.endsWith('.jpg') ? `./public/island-thumb-images/${objAttributes.title.toLowerCase()}.jpg` : `./public/island-thumb-images/${objAttributes.title.toLowerCase()}.png`)
     .then(async info => {
-      island.set('photo_thumb', `http://localhost:5000/public/island-thumb-images/${objAttributes.title.toLowerCase()}.${info.format === 'jpeg' ? 'jpg' : info.format}`);
+      island.set('photo_thumb', `http://localhost:${portNumber}/public/island-thumb-images/${objAttributes.title.toLowerCase()}.${info.format === 'jpeg' ? 'jpg' : info.format}`);
 
       try {
         const result = await island.save(null, { useMasterKey: true });
@@ -75,10 +76,9 @@ for (const island of results) {
 
 
 if (!process.env.TESTING) {
-  const port = process.env.PORT || 5000;
   const httpServer = http.createServer(app);
-  httpServer.listen(port, function () {
-    console.log('parse-server-example running on port ' + port + '.');
+  httpServer.listen(portNumber, function () {
+    console.log('parse-server-example running on port ' + portNumber + '.');
   });
 
 }
