@@ -6,6 +6,7 @@ Nodejs is required for this project.
 
 ## Installation 
 
+For MacOs you should replace "@img/sharp-win32-x64" in  the dependencies with "@img/sharp-darwin-x64": "^0.33.4" .
 Run `npm install` in order to install all the required node modules.
 In order for MacOs devices to run the backend, you need to change the port into 5001 wherever its used in the .env file (PUBLIC_SERVER_URL, SERVER_URL, SERVER_PORT).
 Run `node index.js` for the dev server to start.
